@@ -167,7 +167,7 @@ Open-Source online text editor
 
 
 -> Double click on the topbar to create a new file
--> Click the button at the bottom left to save the current file
+-> Click the button at the top left to save the current file
 `);
     file_load("Hello.txt");
     document.getElementById("out").innerHTML = `[JS]>`;

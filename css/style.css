@@ -20,7 +20,7 @@ body {
 nav#sidebar {
     flex: 1;
     height: 100vh;
-    max-width: 100px;
+    max-width: 50px;
     min-width: 50px;
     background-color: #17191d;
     outline: 1px solid #00000050;
@@ -35,14 +35,16 @@ nav#sidebar ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
 }
 
 nav#sidebar ul .btn {
-    margin-top: 15px;
+    justify-content: start;
     width: 100%;
+    aspect-ratio: 1 / 1;
     background-color: #17191d4d;
     border-radius: 5px;
+    margin: 10px;
 }
 
 div#container {
