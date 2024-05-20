@@ -14,6 +14,7 @@
     <nav id="sidebar">
         <ul>
             <img class="btn" id="saveas" src="resources/img/save.svg"></li>
+            <img class="btn" id="cmd" src="resources/img/cmd.svg"></li>
         </ul>
     </nav>
 
@@ -24,7 +25,16 @@
         </div>
 
         <!-- Text editor -->
-        <textarea name="code" id="code" spellcheck="false" autocomplete="off" wrap="off"></textarea>
+        <textarea name="code" id="code" class="oft_tab_enable" spellcheck="false" autocomplete="off" wrap="off"></textarea>
+
+        <!-- Console -->
+        <div id="console" class="hide">
+            <div id="in">
+                <input type="text" name="input" id="input" spellcheck="false" autocomplete="off" placeholder="> command" maxlength="100">
+                <button id="run">Execute</button>
+            </div>
+            <pre id="out"></pre>
+        </div>
     </div>
 
     <script src="javascript/script.js"></script>

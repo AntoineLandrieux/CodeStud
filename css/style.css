@@ -1,5 +1,6 @@
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     inset: 0;
     margin: 0;
     padding: 0;
@@ -21,7 +22,7 @@ nav#sidebar {
     height: 100vh;
     max-width: 100px;
     min-width: 50px;
-    background-color: #1E2227;
+    background-color: #17191d;
     outline: 1px solid #00000050;
     display: flex;
     flex-direction: column;
@@ -56,7 +57,7 @@ div#files {
     flex: 1.25;
     max-height: 75px;
     min-height: 50px;
-    background-color: #151515;
+    background-color: #17191d;
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
@@ -95,10 +96,80 @@ button.file::before {
 div#container #code {
     flex: 10;
     resize: none;
+    padding: 10px;
+    tab-size: 2;
     overflow: scroll;
     scrollbar-color: #fff #1E2227;
     scrollbar-width: thin;
     background-color: #24272E;
     display: block;
     font-size: min(max(2vmin, 15px), 30px);
+}
+
+div#container #console {
+    width: 100%;
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#console #in {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#console #in input {
+    height: 100%;
+    flex: 10;
+    font-size: min(max(2vmin, 15px), 30px);
+    outline: 1px solid #353535;
+    background-color: #17191d;
+}
+
+#console #in button {
+    height: 100%;
+    flex: 1;
+    padding: 5px;
+    outline: 1px solid #353535;
+    background-color: #17191d;
+}
+
+#console #out {
+    flex: 10;
+    width: 100%;
+    padding: 10px;
+    user-select: none;
+    outline: 1px solid #302e2e;
+    font-size: min(max(2vmin, 15px), 30px);
+    background-color: #17191d;
+    overflow-y: scroll;
+    scrollbar-color: #fff #1E2227;
+    scrollbar-width: thin;
+    text-wrap: wrap;
+    background-color: #0f1013;
+}
+
+#console #out::after {
+    content: "_";
+    font-weight: 1000;
+    animation: write .6s infinite alternate;
+}
+
+.hide {
+    display: none !important;
+}
+
+@keyframes write {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
