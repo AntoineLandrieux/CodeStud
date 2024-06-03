@@ -3,7 +3,13 @@
 
 ---
 
-v1.1.0
+v1.1
 
 - Add JS console
 - Fix couldn't do tab
+
+v1.2
+
+- Add “Hello World!” program when a raw code extension is detected
+- Add Auto-Insert
+- Fix terminal size

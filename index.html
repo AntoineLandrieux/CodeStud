@@ -12,27 +12,20 @@
 <body>
     <!-- Sidebar -->
     <nav id="sidebar">
-        <ul>
-            <img class="btn" id="saveas" src="resources/img/save.svg"></li>
-            <img class="btn" id="cmd" src="resources/img/cmd.svg"></li>
-        </ul>
+        <img class="btn" alt="export" id="saveas" src="resources/img/save.svg"></li>
+        <img class="btn" alt="command" id="cmd" src="resources/img/cmd.svg"></li>
     </nav>
 
     <div id="container">
         <!-- Filename -->
-        <div id="files">
-            <button class="add"></button>
-        </div>
+        <div id="files"></div>
 
         <!-- Text editor -->
-        <textarea name="code" id="code" class="oft_tab_enable" spellcheck="false" autocomplete="off" wrap="off"></textarea>
+        <textarea name="code" id="code" class="oft_tab_enable" spellcheck="false" placeholder="Let's Write !" autocomplete="off" wrap="off"></textarea>
 
         <!-- Console -->
         <div id="console" class="hide">
-            <div id="in">
-                <input type="text" name="input" id="input" spellcheck="false" autocomplete="off" placeholder="> command" maxlength="100">
-                <button id="run">Execute</button>
-            </div>
+            <input type="text" name="input" id="input" spellcheck="false" autocomplete="off" placeholder="> command (Use Enter key to execute code)" maxlength="100">
             <pre id="out"></pre>
         </div>
     </div>

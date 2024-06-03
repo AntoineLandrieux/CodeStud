@@ -13,12 +13,24 @@ Open-Source online text editor
 ***********************************************
 */
 
-const CODESTUD_VERSION = { MAJOR: 1, MINOR: 1, PATCH: 0 };
+const CODESTUD_VERSION = { MAJOR: 1, MINOR: 2, PATCH: 0 };
+const autocomplete = { "<": ">", "(": ")", "{": "}", "[": "]", "Tab": "\t", "\"": "\"", "'": "'", "`": "`" };
 
 let files = [];
 let current_file = "";
 
 let code = document.getElementById("code");
+
+/**
+ * 
+ * @param {string} extension 
+ * @returns {string}
+ */
+async function program(extension) {
+    const response = await fetch("syntax/syntax.json");
+    const jsonsres = await response.json();
+    return jsonsres[extension.toLowerCase()] || "";
+}
 
 /**
  * 
@@ -86,25 +98,27 @@ function file_select(filename) {
  * @param {string} filename 
  * @param {string} content 
  */
-function file_create(filename, content) {
+async function file_create(filename, content) {
+
     if (!filename || filename.replace(" ", "") == "")
         return false;
 
-    filename = encodeURI(filename).replace("%20", " ").slice(0, 15);
+    filename = encodeURI(filename).replace("%20", " ");
+    const extension = filename.split(".")[filename.split(".").length - 1];
 
-    for (let i = 1; files.find(file => file.name.toLowerCase() == filename.toLowerCase()); i = i + 1) {
+    for (let i = 1; files.find(file => file.name.toLowerCase() == filename.toLowerCase()); i++) {
         if (!files.find(file => file.name.toLowerCase() == `${filename.toLowerCase()} (${i})`)) {
-            filename = `${filename} (${i})`;
+            filename = `(${i}) ${filename}`;
             break;
         }
     }
 
     files.push({
         name: filename,
-        content: content
+        content: !content ? await program(extension) : content
     });
 
-    document.getElementById("files").innerHTML += `<button class="file">${filename}</button>`;
+    document.getElementById("files").innerHTML += `<button type="button" class="file">${filename}</button>`;
     file_select(filename);
 
     Array.from(document.getElementsByClassName("file")).forEach((element) => {
@@ -116,17 +130,18 @@ function file_create(filename, content) {
     return true;
 }
 
-document.getElementById("files").addEventListener("dblclick", function () {
-    file_create(prompt("New file"), "");
+document.getElementById("files").addEventListener("dblclick", async function () {
+    await file_create(prompt("New file"), null);
 });
 
 code.addEventListener("keydown", (event) => {
-    if (event.key != "Tab")
+    if (!autocomplete[event.key])
         return;
-    event.preventDefault();
-    code.setRangeText('\t', code.selectionStart, code.selectionStart, "end");
+    if (event.key == "Tab")
+        event.preventDefault();
+    code.setRangeText(autocomplete[event.key], code.selectionStart, code.selectionStart, event.key == "Tab" ? "end" : "start");
     return false;
-})
+});
 
 code.addEventListener("keyup", () => {
     file_save(current_file);
@@ -140,35 +155,42 @@ document.getElementById("cmd").addEventListener('click', function () {
     document.getElementById("console").classList.toggle("hide");
 });
 
-document.getElementById("run").addEventListener('click', function () {
+document.getElementById("input").addEventListener('keydown', function (event) {
+
+    if (event.key != "Enter")
+        return;
+
     document.getElementById("out").innerText += document.getElementById("input").value + "\n";
+
     try {
         document.getElementById("out").innerText += eval(document.getElementById("input").value) + "\n\n[JS]>";
     } catch (except) {
-        document.getElementById("out").innerText += except + "\n\n[JS]>";
+        document.getElementById("out").innerText += except + "\n\n[JS]> ";
     }
+
 });
 
-window.onbeforeunload = () => { return "You have attempted to leave this page. Are you sure?"; };
+// window.onbeforeunload = () => { return "You have attempted to leave this page. Are you sure?"; };
 
-window.addEventListener('load', function () {
-    file_create("Hello.txt", `
-***********************************************
+window.addEventListener('load', async function () {
+    await file_create("Hello.txt", `
+////////////////////////////////////////////////
+
  _____       _     _____ _         _ 
 |     |___ _| |___|   __| |_ _ _ _| |
 |   --| . | . | -_|__   |  _| | | . |
 |_____|___|___|___|_____|_| |___|___|v${CODESTUD_VERSION.MAJOR}.${CODESTUD_VERSION.MINOR}.${CODESTUD_VERSION.PATCH}
 Open-Source online text editor
 
-* Antoine LANDRIEUX
-* https://github.com/AntoineLandrieux/CodeStud/
+🙋 Antoine LANDRIEUX
+📁 https://github.com/AntoineLandrieux/CodeStud/
 
-***********************************************
+////////////////////////////////////////////////
 
 
--> Double click on the topbar to create a new file
--> Click the button at the top left to save the current file
+👉 Double click on the topbar to create a new file
+👉 Click the button at the top left to save the current file
 `);
     file_load("Hello.txt");
-    document.getElementById("out").innerHTML = `[JS]>`;
+    document.getElementById("out").innerHTML = `👨‍💻JS> `;
 });

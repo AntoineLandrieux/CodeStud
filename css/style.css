@@ -1,3 +1,18 @@
+
+/*
+***********************************************
+_____       _     _____ _         _ 
+|     |___ _| |___|   __| |_ _ _ _| |
+|   --| . | . | -_|__   |  _| | | . |
+|_____|___|___|___|_____|_| |___|___|
+Open-Source online text editor
+
+* Antoine LANDRIEUX
+* https://github.com/AntoineLandrieux/CodeStud/
+
+***********************************************
+*/
+
 *,
 *::before,
 *::after {
@@ -27,18 +42,10 @@ nav#sidebar {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-nav#sidebar ul {
-    flex: 1;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-between;
 }
 
-nav#sidebar ul .btn {
+nav#sidebar .btn {
     justify-content: start;
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -99,7 +106,7 @@ div#container #code {
     flex: 10;
     resize: none;
     padding: 10px;
-    tab-size: 2;
+    tab-size: 4;
     overflow: scroll;
     scrollbar-color: #fff #1E2227;
     scrollbar-width: thin;
@@ -112,31 +119,15 @@ div#container #console {
     width: 100%;
     flex: 5;
     display: flex;
+    max-height: 40vh;
     flex-direction: column;
     align-items: center;
 }
 
-#console #in {
+#console input {
     flex: 1;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#console #in input {
-    height: 100%;
-    flex: 10;
     font-size: min(max(2vmin, 15px), 30px);
-    outline: 1px solid #353535;
-    background-color: #17191d;
-}
-
-#console #in button {
-    height: 100%;
-    flex: 1;
-    padding: 5px;
     outline: 1px solid #353535;
     background-color: #17191d;
 }
