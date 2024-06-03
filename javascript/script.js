@@ -170,7 +170,7 @@ document.getElementById("input").addEventListener('keydown', function (event) {
 
 });
 
-// window.onbeforeunload = () => { return "You have attempted to leave this page. Are you sure?"; };
+window.onbeforeunload = () => { return "You have attempted to leave this page. Are you sure?"; };
 
 window.addEventListener('load', async function () {
     await file_create("Hello.txt", `
