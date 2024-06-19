@@ -1,5 +1,5 @@
 {
-    "c": "\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(int argc, char *argv[])\n{\n\tprintf(\"Hello World!\")\n\treturn EXIT_SUCCESS;\n}\n",
+    "c": "\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(int argc, char *argv[])\n{\n\tprintf(\"Hello World!\");\n\treturn EXIT_SUCCESS;\n}\n",
     "cs": "\nusing System;\n\nnamespace Hello_World\n{\n\tclass Program\n\t{\n\t\tstatic void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine(\"Hello World!\");\n\t\t}\n\t}\n}\n",
     "c#": "\nusing System;\n\nnamespace Hello_World\n{\n\tclass Program\n\t{\n\t\tstatic void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine(\"Hello World!\");\n\t\t}\n\t}\n}\n",
     "csharp": "\nusing System;\n\nnamespace Hello_World\n{\n\tclass Program\n\t{\n\t\tstatic void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine(\"Hello World!\");\n\t\t}\n\t}\n}\n",
@@ -24,7 +24,7 @@
     "js": "\nconsole.log(\"Hello World!\")\n",
     "ts": "\nconsole.log(\"Hello World!\")\n",
     "json": "{\n\t\n}",
-    "php": "\n<?php echo \"Hello World!\" ?>\n",
+    "php": "\n<?php echo \"Hello World!\"; ?>\n",
     "sql": "\nCREATE DATABASE my_db;\n\nUSE my_db;\n\nCREATE TABLE IF NOT EXISTS my_table (\n\tid INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,\n\tname VARCHAR(255) NOT NULL\n);\n",
     "r": "\nprint(\"Hello World!\")\n"
 }

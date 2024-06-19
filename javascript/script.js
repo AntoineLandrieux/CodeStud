@@ -13,13 +13,14 @@ Open-Source online text editor
 ***********************************************
 */
 
-const CODESTUD_VERSION = { MAJOR: 1, MINOR: 2, PATCH: 0 };
+const CODESTUD_VERSION = { MAJOR: 1, MINOR: 2, PATCH: 1 };
 const autocomplete = { "<": ">", "(": ")", "{": "}", "[": "]", "Tab": "\t", "\"": "\"", "'": "'", "`": "`" };
 
 let files = [];
 let current_file = "";
 
 let code = document.getElementById("code");
+let output = document.getElementById("out");
 
 /**
  * 
@@ -160,13 +161,18 @@ document.getElementById("input").addEventListener('keydown', function (event) {
     if (event.key != "Enter")
         return;
 
-    document.getElementById("out").innerText += document.getElementById("input").value + "\n";
+    const code = document.getElementById("input").value;
+
+    output.innerText += code + "\n";
 
     try {
-        document.getElementById("out").innerText += eval(document.getElementById("input").value) + "\n\n[JS]>";
+        output.innerText += eval(code);
     } catch (except) {
-        document.getElementById("out").innerText += except + "\n\n[JS]> ";
+        output.innerText += except;
     }
+
+    delete code;
+    output.innerText += "\n\n👨‍💻> ";
 
 });
 
@@ -192,5 +198,5 @@ Open-Source online text editor
 👉 Click the button at the top left to save the current file
 `);
     file_load("Hello.txt");
-    document.getElementById("out").innerHTML = `👨‍💻JS> `;
+    output.innerHTML = `👨‍💻> `;
 });
